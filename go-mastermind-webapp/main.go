@@ -58,9 +58,9 @@ func gamePage(w http.ResponseWriter, r *http.Request) {
                                                                   .peg.Red { background: #e53935; }
                                                                   .peg.Blue { background: #1e88e5; }
                                                                   .peg.Green { background: #43a047; }
-                                                                  .peg.Yellow { background: #fbc02d; }
-                                                                  .peg.Orange { background: #fb8c00; }
-                                                                  .peg.Purple { background: #8e24aa; }
+                                                                      .peg.Yellow { background: #ffff00; }
+                                                                      .peg.Orange { background: #fb8c00; }
+                                                                      .peg.Purple { background: #fff; border: 2px solid #888; }
                                                                   .slot { width: 34px; height: 34px; border-radius: 50%; border: 2px dashed #bbb; display: inline-block; margin: 4px; vertical-align: middle; background: #fff; }
                                                                   .slot.filled { border-style: solid; }
                                                                   .guess-row { margin: 10px 0; }
@@ -107,8 +107,23 @@ func gamePage(w http.ResponseWriter, r *http.Request) {
                                                                           if (gameOver || rowNum !== currentRow) return;
                                                                           const color = e.dataTransfer.getData('color');
                                                                           if (!colors.includes(color)) return;
-                                                                          slot.className = 'slot filled ' + color;
-                                                                          slot.setAttribute('data-color', color);
+                                                                              slot.className = 'slot filled ' + color;
+                                                                              slot.setAttribute('data-color', color);
+                                                                              // Set background color to match peg
+                                                                              slot.style.background = pegColor(color);
+                                                                              slot.style.borderStyle = 'solid';
+                                          // Helper to get peg color hex
+                                          function pegColor(color) {
+                                                  switch(color) {
+                                                          case 'Red': return '#e53935';
+                                                          case 'Blue': return '#1e88e5';
+                                                          case 'Green': return '#43a047';
+                                                              case 'Yellow': return '#ffff00';
+                                                              case 'Orange': return '#fb8c00';
+                                                              case 'Purple': return '#fff';
+                                                          default: return '#fff';
+                                                  }
+                                          }
                                                                   };
                                                                   row.appendChild(slot);
                                                           }
