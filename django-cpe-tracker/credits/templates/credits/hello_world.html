@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>CPE Tracker Home</title>
+    <link rel="stylesheet" href="{% static 'credits/panda.css' %}">
+</head>
+
+<body>
+    <div class="container" style="max-width: 600px; margin-top: 80px; text-align: center;">
+        <h1 style="font-size: 2.3rem; font-weight: 700; margin-bottom: 0.5em; color: #1a1a1a; letter-spacing: -1px;">
+            Welcome to the CPE Tracker</h1>
+        <p style="font-size: 1.15rem; color: #444; margin-bottom: 2em;">Track your continuing education credits with
+            ease.</p>
+        <a href="{% url 'select_user' %}" class="edit-btn" style="font-size: 1.1rem; padding: 14px 36px;">Login</a>
+    </div>
+</body>
+
+</html>

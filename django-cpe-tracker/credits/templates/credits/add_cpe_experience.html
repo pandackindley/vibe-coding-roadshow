@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% if edit %}Edit{% else %}Add New{% endif %} CPE Experience</title>
+    <link rel="stylesheet" href="{% static 'credits/panda.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="panda-header">
+            <img src="https://cdn.jsdelivr.net/gh/pandas-dev/pandas/static/img/pandas.svg" alt="Panda logo">
+            <h1>{% if edit %}Edit{% else %}Add New{% endif %} CPE Experience</h1>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <p>
+                <label for="id_title">Title:</label><br>
+                {{ form.title }}
+            </p>
+            <p>
+                <label for="id_details">Details:</label><br>
+                {{ form.details }}
+            </p>
+            <p>
+                <label for="id_credit_hours">Credit Hours:</label><br>
+                {{ form.credit_hours }}
+            </p>
+            <p>
+                <label for="id_date_accomplished">Date Accomplished:</label><br>
+                {{ form.date_accomplished }}
+            </p>
+            <button type="submit">Save</button>
+        </form>
+        <p><a href="{% url 'landing' %}">Back to landing page</a></p>
+    </div>
+</body>
+
+</html>

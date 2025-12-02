@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Select User</title>
+    <link rel="stylesheet" href="{% static 'credits/panda.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="panda-header">
+            <img src="https://cdn.jsdelivr.net/gh/pandas-dev/pandas/static/img/pandas.svg" alt="Panda logo">
+            <h1>Select Your User Account</h1>
+        </div>
+        <ul>
+            {% for user in users %}
+            <li><a href="{% url 'login_user' user.username %}">{{ user.username }}</a></li>
+            {% empty %}
+            <li>No users found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+
+</html>

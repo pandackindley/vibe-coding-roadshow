@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="{% static 'credits/panda.css' %}">
+</head>
+
+<body>
+    <div class="container" style="background: none; box-shadow: none; padding: 0; max-width: 900px;">
+        <div style="display: flex; flex-direction: column; gap: 32px;">
+            <div
+                style="background: #fff; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 32px 40px 24px 40px; margin-top: 32px;">
+                <h1
+                    style="font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5em; color: #1a1a1a; letter-spacing: -1px;">
+                    Welcome, {{ request.user.username }}!</h1>
+                <p style="font-size: 1.15rem; color: #444; margin-bottom: 0;">Track your continuing education credits in
+                    one place.</p>
+            </div>
+            <div
+                style="background: #f3f6fd; border-radius: 14px; box-shadow: 0 1px 6px rgba(0,0,0,0.04); padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+                <h2 style="font-size: 1.3rem; font-weight: 600; margin: 0; color: #1a7f37;">Add a New CPE Experience
+                </h2>
+                <form action="{% url 'add_cpe_experience' %}" method="get" style="margin: 0;">
+                    <button type="submit">Add New CPE Experience</button>
+                </form>
+            </div>
+            <div
+                style="background: #fff; border-radius: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 32px 40px;">
+                <h2 style="font-size: 1.3rem; font-weight: 600; margin-bottom: 18px; color: #1a1a1a;">Your CPE
+                    Experiences</h2>
+                {% if experiences %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Credit Hours</th>
+                            <th>Date Completed</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for exp in experiences %}
+                        <tr>
+                            <td>{{ exp.title }}</td>
+                            <td>{{ exp.credit_hours }}</td>
+                            <td>{{ exp.date_accomplished }}</td>
+                            <td><a href="{% url 'edit_cpe_experience' exp.id %}" class="edit-btn">Edit</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p style="color: #888;">No CPE experiences registered yet.</p>
+                {% endif %}
+            </div>
+            <div style="text-align: right; margin-bottom: 24px;">
+                <a href="{% url 'select_user' %}" style="color: #1a7f37; font-weight: 500;">Switch User</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
