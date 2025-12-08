@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connect4 Game Documentation</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; }
+        h1, h2 { color: #2c3e50; }
+        code { background: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+        ul, ol { margin-bottom: 1em; }
+    </style>
+</head>
+<body>
+    <h1>Connect4 Django Web App Documentation</h1>
+    <h2>Overview</h2>
+    <p>This project is a web-based implementation of Connect4 using Django. It allows two players to enter their names, take turns dropping red and black tokens, and automatically detects wins and draws.</p>
+    <h2>Core Functions</h2>
+    <ul>
+        <li><b>launcher(request)</b>: Renders the launcher page where players enter their names and start a new game.</li>
+        <li><b>start_game(request)</b>: Handles the main game logic:
+            <ul>
+                <li>Initializes the board and player names on new game.</li>
+                <li>Processes token drops, alternates turns, and updates the board.</li>
+                <li>Detects win and draw conditions.</li>
+                <li>Handles game reset (clears board, keeps names).</li>
+                <li>Passes board state, player names, winner/draw info to the template.</li>
+            </ul>
+        </li>
+        <li><b>check_win(board)</b>: Checks for four-in-a-row horizontally, vertically, or diagonally.</li>
+        <li><b>check_draw(board)</b>: Checks if the board is full with no winner.</li>
+    </ul>
+    <h2>UI Elements</h2>
+    <ul>
+        <li><b>Launcher Page (<code>launcher.html</code>)</b>: Form for player names and starting a new game.</li>
+        <li><b>Game Page (<code>game_started.html</code>)</b>:
+            <ul>
+                <li>Displays player names and a 6x7 Connect4 board.</li>
+                <li>Arrow buttons above each column to drop tokens (disabled after win/draw).</li>
+                <li>Red and black tokens rendered as colored circles.</li>
+                <li>Win/draw messages shown when appropriate.</li>
+                <li>Reset button to clear the board and restart the game.</li>
+            </ul>
+        </li>
+    </ul>
+    <h2>Session Management</h2>
+    <ul>
+        <li>Board state, turn, and player names are stored in Django's session, so the game persists across requests.</li>
+    </ul>
+    <h2>How to Run</h2>
+    <ol>
+        <li>Install dependencies: <code>pip install django</code></li>
+        <li>Start the server: <code>python manage.py runserver</code></li>
+        <li>Visit <code>http://localhost:8000/</code> to play.</li>
+    </ol>
+    <h2>File Structure</h2>
+    <ul>
+        <li><code>connect4/views.py</code>: Game logic and view functions</li>
+        <li><code>connect4/templates/connect4/launcher.html</code>: Launcher UI</li>
+        <li><code>connect4/templates/connect4/game_started.html</code>: Game UI</li>
+        <li><code>connect4/urls.py</code>: URL routing</li>
+        <li><code>manage.py</code>, <code>settings.py</code>: Django project setup</li>
+    </ul>
+    <h2>Extending the Game</h2>
+    <ul>
+        <li>Add win history, player stats, or AI opponent</li>
+        <li>Improve UI with animations or mobile support</li>
+        <li>Add authentication for persistent player profiles</li>
+    </ul>
+    <hr>
+    <p>For questions or feedback, see the main project README or contact the maintainer.</p>
+</body>
+</html>

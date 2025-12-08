@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connect4 Launcher</title>
+</head>
+<body>
+    <h1>Connect4 Game Launcher</h1>
+    <form action="{% url 'start_game' %}" method="post">
+        {% csrf_token %}
+        <label for="player_red">Red Player Name:</label>
+        <input type="text" id="player_red" name="player_red" required><br><br>
+        <label for="player_black">Black Player Name:</label>
+        <input type="text" id="player_black" name="player_black" required><br><br>
+        <button type="submit">Start New Game</button>
+    </form>
+</body>
+</html>
