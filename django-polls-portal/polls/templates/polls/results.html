@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+<head><title>Results</title></head>
+<body>
+  <h1>Poll Results</h1>
+  {% if show_results %}
+    <p>Results available via API GET /api/polls/{{ poll.id }}/results.</p>
+  {% else %}
+    <p>Results are hidden while poll is open.</p>
+  {% endif %}
+</body>
+</html>

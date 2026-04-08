@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head><title>Polls</title></head>
+<body>
+  <h1>Polls</h1>
+  <a href="/polls/create/">Create Poll</a>
+  <ul>
+    {% for poll in polls %}
+      <li>
+        {{ poll.question_text }} ({{ poll.status }})
+        <a href="/polls/{{ poll.id }}/respond/">Respond</a>
+        <a href="/polls/{{ poll.id }}/results/">Results</a>
+        <a href="/polls/{{ poll.id }}/review/">Review</a>
+      </li>
+    {% empty %}
+      <li>No polls yet.</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
