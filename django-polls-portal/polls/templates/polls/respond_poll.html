@@ -1,9 +1,14 @@
 <!doctype html>
 <html>
-<head><title>Respond</title></head>
+
+<head>
+    <title>Respond</title>
+</head>
+
 <body>
-  <h1>Respond to Poll</h1>
-  <p>{{ poll.question_text }}</p>
-  <p>Submit via API POST /api/polls/{{ poll.id }}/responses.</p>
+    <h1>Respond to Poll</h1>
+    <p>{{ poll.question_text }}</p>
+    <p>Submit via API POST /api/polls/{{ poll.id }}/responses.</p>
 </body>
+
 </html>
